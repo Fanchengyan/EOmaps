@@ -82,7 +82,6 @@ author = "Raphael Quast"
 # -- General configuration
 
 extensions = [
-    "nbsphinx",
     "sphinx.ext.duration",
     "sphinx.ext.doctest",
     "sphinx.ext.autodoc",
@@ -92,9 +91,14 @@ extensions = [
     "sphinx_copybutton",
     "pydata_sphinx_theme",
     "sphinx_design",
+    "myst_nb",
+    "sphinx_gallery.gen_gallery",
 ]
 
-
+sphinx_gallery_conf = {
+    "examples_dirs": "../../examples",  # path to your example scripts
+    "gallery_dirs": "auto_examples",  # path to where to save gallery generated output
+}
 # add mapping for matplotlib-docs to resolve warning about undefined labels
 # in inherited docstrings
 intersphinx_mapping = {"mpl": ("https://matplotlib.org/stable", None)}
@@ -161,21 +165,17 @@ napoleon_preprocess_types = False
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
-# Support for notebook formats other than .ipynb
-nbsphinx_custom_formats = {
-    ".pct.py": ["jupytext.reads", {"fmt": "py:percent"}],
+
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".myst": "myst-nb",
 }
 
-# source_suffix = {
-#     ".rst": "restructuredtext",
-#     ".myst": "myst-nb",
-# }
 
-
-# myst_update_mathjax = False  # to use single $x^2$ for equations
-# myst_render_markdown_format = "myst"  # to parse markdown output with MyST parser
-# myst_enable_extensions = ["dollarmath", "colon_fence"]
-# myst_title_to_header = True
+myst_update_mathjax = False  # to use single $x^2$ for equations
+myst_render_markdown_format = "myst"  # to parse markdown output with MyST parser
+myst_enable_extensions = ["dollarmath", "colon_fence"]
+myst_title_to_header = True
 
 nb_execution_mode = "off"
 nb_execution_timeout = 120
