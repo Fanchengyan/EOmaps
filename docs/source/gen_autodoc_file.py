@@ -71,6 +71,7 @@ def make_feature_toctree_file():
         "set_shape",
         "draw",
         "from_file",
+        "new_layer_from_file",
         "read_file",
         "util",
         "add_wms",
@@ -122,7 +123,11 @@ def make_feature_toctree_file():
 
     s += get_autosummary(
         "eomaps.widgets",
-        [i for i in get_members(widgets) if not i.rsplit(".", 1)[-1][0].islower()],
+        [
+            i.rsplit(".", 1)[1]
+            for i in get_members(widgets)
+            if not i.rsplit(".", 1)[-1][0].islower()
+        ],
     )
 
     basepath = Path(__file__).parent

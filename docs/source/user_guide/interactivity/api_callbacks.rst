@@ -8,8 +8,9 @@
     :local:
     :depth: 1
 
+
 How to attach callbacks to a map
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. currentmodule:: eomaps.eomaps
 
@@ -101,7 +102,7 @@ The ``< EVENT CATEGORY >`` hereby specifies the event that will trigger the call
 
     .. grid-item::
 
-        .. image:: ../../_static/minigifs/simple_callbacks.gif
+        .. image:: /_static/minigifs/simple_callbacks.gif
 
 
 In addition, each callback-container supports the following useful methods:
@@ -131,8 +132,8 @@ In addition, each callback-container supports the following useful methods:
     set_execute_on_all_layers
 
 
-Using callbacks with the companion-widget
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Companion-widget callbacks
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some of the most commonly used pre-defined callbacks are integrated in the :ref:`companion_widget`.
 
@@ -140,7 +141,7 @@ Some of the most commonly used pre-defined callbacks are integrated in the :ref:
 - basic click/pick callbacks to get information on the clicked point
 
 
-.. image:: ../../_static/widget_callbacks.png
+.. image:: /_static/widget_callbacks.png
     :width: 60%
 
 
@@ -151,8 +152,8 @@ Some of the most commonly used pre-defined callbacks are integrated in the :ref:
 Pre-defined callbacks
 ~~~~~~~~~~~~~~~~~~~~~
 
-Pre-defined click, pick and move callbacks
-******************************************
+Click, pick and move
+********************
 
 Callbacks that can be used with ``m.cb.click``, ``m.cb.pick`` and ``m.cb.move``:
 
@@ -191,8 +192,8 @@ Callbacks that can be used only with ``m.cb.pick``:
     highlight_geometry
 
 
-Pre-defined keypress callbacks
-******************************
+Keypress
+********
 
 Callbacks that can be used with ``m.cb.keypress``
 
@@ -403,11 +404,11 @@ To customize the picking-behavior, use ``m.cb.pick.set_props()``. The following 
 
     .. grid-item::
 
-        .. image:: ../../_static/minigifs/pick_multi.gif
+        .. image:: /_static/minigifs/pick_multi.gif
 
 
-Picking a dataset without plotting it first
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Picking "invisible" datasets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. currentmodule:: eomaps.eomaps
 

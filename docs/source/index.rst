@@ -1,16 +1,8 @@
-.. include:: examples/substitutions.rst
+.. include:: substitutions.rst
 
-.. image:: _static/logo.png
-  :width: 40%
-  :align: center
-  :target: https://github.com/raphaelquast/EOmaps
-
-.. raw:: html
-
-    <br>
-    <font size=5>Welcome to the documentation for <b>EOmaps</b>!</font>
-    <p>
-
+============================================
+Welcome to the documentation for **EOmaps**!
+============================================
 
 Here you can find detailed explanations on all the features and functionalities of EOmaps.
 
@@ -50,7 +42,7 @@ Want to visualize some data? Have a look at the :doc:`user_guide/how_to_use/api_
 
 EOmaps provides a variety of plot-shapes so you can select a shape that suits the structure, size and spatial representativeness of your data:
 
- .. include:: _shape_table.rst
+.. include:: _shape_table.rst
 
 Map Features
 ------------
@@ -172,7 +164,7 @@ With a few lines of code, you can turn your maps into interactive data-analysis 
 
 
 Miscellaneous
-~~~~~~~~~~~~~
+-------------
 
 .. grid:: 1 1 1 2
     :gutter: 1
@@ -207,7 +199,7 @@ Miscellaneous
 
 
 API Reference
-~~~~~~~~~~~~~
+-------------
 
 .. grid:: 1 1 1 2
     :gutter: 1
@@ -223,9 +215,18 @@ API Reference
 Examples
 --------
 
-Make sure to check out the :doc:`Examples <examples/EOmaps_examples>` for an overview of the capabilities (incl. source code)!
+Make sure to check out the :doc:`Examples <auto_examples/index>` for an overview of the capabilities (incl. source code)!
 
-.. include:: examples/example_galery.rst
+.. grid:: 1 1 1 2
+    :gutter: 1
+
+    .. grid-item-card:: EOmaps Examples
+        :link: auto_examples/index
+        :link-type: doc
+        :shadow: none
+
+        Detailed examples of EOmaps.
+
 
 
 .. toctree::
@@ -233,9 +234,9 @@ Make sure to check out the :doc:`Examples <examples/EOmaps_examples>` for an ove
     :maxdepth: 1
     :caption: General
 
-    installation
+    Installation <installation>
     user_guide/index
-    examples/EOmaps_examples
+    Examples <auto_examples/index>
     api/reference
-    contribute/contribute
-    FAQ
+    Contribution Guide <contribute/contribute>
+    FAQ <FAQ>

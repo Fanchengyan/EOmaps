@@ -4,15 +4,45 @@ import sys
 
 from docutils.nodes import reference
 
+import eomaps
 from eomaps import Maps
 
 sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("."))
 
-from docs.source.gen_autodoc_file import make_feature_toctree_file
+examples_dir = "../../examples"
+gallery_dir = "./auto_examples"
+
+
+from docs.source.gen_autodoc_file import make_feature_toctree_file  # noqa: E402
 
 make_feature_toctree_file()
+
+####### Generate gallery #######
+from pathlib import Path  # noqa: E402
+
+from myst_sphinx_gallery import (  # noqa: E402
+    GalleryConfig,
+    GridItemCard,
+    ThumbnailConfig,
+)
+
+myst_gallery_grid_item = GridItemCard()
+myst_gallery_grid_item.add_option("class-item", "myst-gallery-grid-item")
+
+
+myst_sphinx_gallery_config = GalleryConfig(
+    examples_dirs="../../examples",
+    gallery_dirs="auto_examples",
+    root_dir=Path(__file__).parent,
+    notebook_thumbnail_strategy="code",
+    thumbnail_config=ThumbnailConfig(
+        max_animation_frames=80,
+        operation_kwargs={"color": "white"},
+    ),
+    grid_item_card=myst_gallery_grid_item,
+)
 
 
 def mpl_rc_role_subst(name, rawtext, text, lineno, inliner, options={}, content=[]):
@@ -90,8 +120,9 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "pydata_sphinx_theme",
-    "myst_nb",
     "sphinx_design",
+    "myst_nb",
+    "myst_sphinx_gallery",
 ]
 
 
@@ -106,16 +137,35 @@ epub_show_urls = "footnote"
 
 templates_path = ["_templates"]
 html_static_path = ["_static"]
-html_css_files = ["custom_css.css"]
+html_css_files = ["css/custom.css", "css/gallery.css"]
+
+html_js_files = ["custom-icon.js"]
 
 # PyData theme options
 html_theme = "pydata_sphinx_theme"
 html_logo = "../../logos/EO_Maps_Logo_V6.png"
+
+# hide left sidebar for orphan pages
+html_sidebars = {
+    "contribute/contribute": [],
+    "installation": [],
+    "FAQ": [],
+    "api/reference": [],
+}
+
+# version-switcher details
+version_json = "https://eomaps.readthedocs.io/en/dev/_static/version_switcher.json"
+version_match = os.environ.get("READTHEDOCS_VERSION")
+if not version_match:
+    version_match = "latest"
+
+
 html_theme_options = {
     "collapse_navigation": False,
     "show_nav_level": 2,
     "show_toc_level": 2,
     "header_links_before_dropdown": 10,
+    "navbar_start": ["navbar-logo", "version-switcher"],
     "icon_links": [
         {
             "name": "GitHub",
@@ -126,10 +176,20 @@ html_theme_options = {
         {
             "name": "PyPI",
             "url": "https://pypi.org/project/eomaps/",
-            "icon": "fa-brands fa-python",
+            "icon": "fa-custom fa-pypi",
+            "type": "fontawesome",
+        },
+        {
+            "name": "conda-forge",
+            "url": "https://anaconda.org/conda-forge/eomaps",
+            "icon": "fa-custom fa-conda-forge",
             "type": "fontawesome",
         },
     ],
+    "switcher": {
+        "json_url": version_json,
+        "version_match": version_match,
+    },
 }
 
 autosummary_generate = ["api/autodoc_additional_props.rst"]  # "full_reference.rst",
@@ -161,6 +221,14 @@ napoleon_preprocess_types = False
 napoleon_type_aliases = None
 napoleon_attr_annotations = True
 
+# Support for notebook formats other than .ipynb
+
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "myst-nb",
+    ".myst": "myst-nb",
+}
+
 myst_update_mathjax = False  # to use single $x^2$ for equations
 myst_render_markdown_format = "myst"  # to parse markdown output with MyST parser
 myst_enable_extensions = ["dollarmath", "colon_fence"]
@@ -180,9 +248,3 @@ exclude_patterns = [
     # (check "make_feature_toctree_file()" for more details.
     "api/eomaps.*",
 ]
-
-source_suffix = {
-    ".rst": "restructuredtext",
-    ".ipynb": "myst-nb",
-    ".myst": "myst-nb",
-}
